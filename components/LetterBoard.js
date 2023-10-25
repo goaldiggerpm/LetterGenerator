@@ -4,11 +4,11 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import {
   Box,
-  Button,
   Container,
   FormControl,
   Grid,
   Paper,
+  Snackbar,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -22,6 +22,7 @@ import {
 } from "./atoms/FormFields";
 import InputMultiline from "./atoms/CustmTextrarea";
 import DropButton from "./atoms/DropButton";
+import SimpleSnackbar from "./atoms/SnackBar";
 
 const defaultValues = {
   question: "",
@@ -43,8 +44,9 @@ const LetterBoard = () => {
       formData?.question === "" ||
       formData?.question === null ||
       formData?.question === undefined
-    )
-      return setdisabledState(true);
+    ) {
+      setdisabledState(true);
+    }
     console.log("input taken");
   };
 
@@ -53,8 +55,9 @@ const LetterBoard = () => {
       formData?.question !== "" ||
       formData?.question !== null ||
       formData?.question !== undefined
-    )
-      return setdisabledState(false);
+    ) {
+      setdisabledState(false);
+    }
     console.log("value: ", formData);
   }, [formData]);
 
@@ -65,6 +68,7 @@ const LetterBoard = () => {
         height: "62vh",
       }}
     >
+      <SimpleSnackbar showInfo={disabledState} />
       <Grid
         container
         spacing={0}
