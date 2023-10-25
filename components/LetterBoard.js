@@ -1,8 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-import { Box, Button, Container, Grid, Paper } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  Paper,
+} from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
@@ -16,7 +23,41 @@ import {
 import InputMultiline from "./atoms/CustmTextrarea";
 import DropButton from "./atoms/DropButton";
 
+const defaultValues = {
+  question: "",
+  tone: "",
+  style: "",
+};
+
 const LetterBoard = () => {
+  const [formData, setformData] = useState(defaultValues);
+  const [disabledState, setdisabledState] = useState(true);
+
+  const handleOnChange = useCallback((ev) => {
+    // console.log("value: ", ev.target.value);
+    setformData((prev) => ({ ...prev, [ev.target.name]: ev.target.value }));
+  }, []);
+
+  const formHandler = () => {
+    if (
+      formData?.question === "" ||
+      formData?.question === null ||
+      formData?.question === undefined
+    )
+      return setdisabledState(true);
+    console.log("input taken");
+  };
+
+  useEffect(() => {
+    if (
+      formData?.question !== "" ||
+      formData?.question !== null ||
+      formData?.question !== undefined
+    )
+      return setdisabledState(false);
+    console.log("value: ", formData);
+  }, [formData]);
+
   return (
     <Container
       sx={{
@@ -69,8 +110,14 @@ const LetterBoard = () => {
                     margin: "2.4vh auto auto auto",
                   }}
                 >
-                  <Label>Describe your letter</Label>
-                  <InputMultiline />
+                  <FormControl>
+                    <Label>Describe your letter</Label>
+                    <InputMultiline
+                      name="question"
+                      value={formData?.question}
+                      onChange={handleOnChange}
+                    />
+                  </FormControl>
                   <SubTitle variant="subtitle1" sx={{ alignSelf: "flex-end" }}>
                     200/300
                   </SubTitle>
@@ -84,8 +131,27 @@ const LetterBoard = () => {
                     marginTop: "4vh",
                   }}
                 >
-                  <DropButton labelname={"tone"} />
-                  <DropButton labelname={"style"} />
+                  <DropButton
+                    name="tone"
+                    labelname={"tone"}
+                    value={formData?.tone}
+                    setvalue={handleOnChange}
+                    options={[
+                      "📖 descriptive",
+                      "🕴️ personal",
+                      "🎯 direct",
+                      "🤝 confident",
+                    ]}
+                    disabled={disabledState}
+                  />
+                  <DropButton
+                    name="style"
+                    labelname={"style"}
+                    value={formData?.style}
+                    setvalue={handleOnChange}
+                    options={["💼 formal", "👕 casual", "😐 neutral"]}
+                    disabled={disabledState}
+                  />
                 </Box>
                 <Box
                   sx={{
@@ -102,6 +168,8 @@ const LetterBoard = () => {
                     variant="contained"
                     disableElevation
                     fulllen={true}
+                    onClick={() => formHandler()}
+                    disabled={disabledState}
                   >
                     Create more
                   </CustmButton>
@@ -178,6 +246,7 @@ const LetterBoard = () => {
                 disableElevation
                 btnlen={"20%"}
                 startIcon={<SaveIcon />}
+                disabled={disabledState}
               >
                 Save
               </CustmButton>
@@ -186,6 +255,7 @@ const LetterBoard = () => {
                 disableElevation
                 btnlen={"20%"}
                 startIcon={<ContentCopyIcon />}
+                disabled={disabledState}
               >
                 Copy
               </CustmButton>

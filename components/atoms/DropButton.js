@@ -22,12 +22,18 @@ const CustomSelect = styled(Select)((props) => ({
   },
 }));
 
-const DropButton = ({ setvalue, labelname }) => {
+const DropButton = ({
+  setvalue,
+  labelname,
+  options,
+  name,
+  value,
+  disabled,
+}) => {
   const [val, setval] = useState("");
-
   function setResult(event) {
     setval(event.target.value);
-    // setvalue(event.target.value);
+    setvalue(event);
   }
 
   return (
@@ -47,18 +53,27 @@ const DropButton = ({ setvalue, labelname }) => {
       <CustomSelect
         labelId="demo-simple-select-standard-label"
         id="demo-simple-select-standard"
-        value={val}
-        onChange={setResult}
+        value={value}
+        name={name}
+        onChange={setvalue}
         label="Val"
         disableUnderline
         IconComponent={KeyboardArrowDownIcon}
+        disabled={disabled}
       >
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>😍 Professional</MenuItem>
-        <MenuItem value={20}>😊 Friendly</MenuItem>
-        <MenuItem value={30}>😒 Casual</MenuItem>
+
+        {options.map((val, index) => {
+          return (
+            <MenuItem key={index} value={val}>
+              {val}
+            </MenuItem>
+          );
+        })}
+        {/* <MenuItem value={20}>😊 Friendly</MenuItem>
+        <MenuItem value={30}>😒 Casual</MenuItem> */}
       </CustomSelect>
     </FormControl>
   );

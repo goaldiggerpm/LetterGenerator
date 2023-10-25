@@ -16,9 +16,16 @@ const Input = React.forwardRef(function CustomInput(props, ref) {
   );
 });
 
-export default function InputMultiline() {
+export default function InputMultiline(props) {
   return (
-    <Input aria-label="Demo input" multiline placeholder="Type something…" />
+    <Input
+      aria-label="Demo input"
+      multiline
+      placeholder="Type something…"
+      name={props.name}
+      value={props.value}
+      onChange={props.onChange}
+    />
   );
 }
 
