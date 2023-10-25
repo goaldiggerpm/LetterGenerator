@@ -231,7 +231,7 @@ const LetterBoard = () => {
                 marginTop: "1.2vh",
               }}
             >
-              <CustmButton
+              {/* <CustmButton
                 variant="contained"
                 disableElevation
                 btnlen={"20%"}
@@ -239,7 +239,7 @@ const LetterBoard = () => {
                 disabled={disabledState}
               >
                 Save
-              </CustmButton>
+              </CustmButton> */}
               <CustmButton
                 variant="contained"
                 disableElevation
