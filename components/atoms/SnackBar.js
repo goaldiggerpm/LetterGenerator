@@ -59,7 +59,7 @@ export default function SimpleSnackbar({ showInfo = false }) {
       <CstmSnackbar
         open={open}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        autoHideDuration={6000000}
+        autoHideDuration={6000}
         onClose={handleClose}
         message="Question required"
         action={action}

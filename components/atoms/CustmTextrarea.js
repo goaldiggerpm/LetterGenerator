@@ -17,6 +17,7 @@ const Input = React.forwardRef(function CustomInput(props, ref) {
 });
 
 export default function InputMultiline(props) {
+  // console.log(props);
   return (
     <Input
       aria-label="Demo input"
@@ -25,6 +26,7 @@ export default function InputMultiline(props) {
       name={props.name}
       value={props.value}
       onChange={props.onChange}
+      maxLength={props.maxLength}
     />
   );
 }
