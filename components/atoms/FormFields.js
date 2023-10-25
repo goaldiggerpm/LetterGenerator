@@ -23,10 +23,11 @@ export const SubTitle = styled(Typography)((props) => ({
 
 export const CustmButton = styled(Button)((props) => ({
   fontWeight: 600,
-  color: "#fff",
+  color: "#344054",
   fontSize: "0.9rem",
   marginBottom: "5px",
   textTransform: "capitalize",
+  backgroundColor: "#fff",
   border: "0.4px solid #E0E3E7",
   borderRadius: "8px",
   width: `${props.fulllen ? "100%" : props.btnlen}`,

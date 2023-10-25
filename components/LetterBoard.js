@@ -82,7 +82,7 @@ const LetterBoard = () => {
   }, [formData]);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(result);
+    navigator.clipboard.writeText(result?.data);
   };
 
   return (
