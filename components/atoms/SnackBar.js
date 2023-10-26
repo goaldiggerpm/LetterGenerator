@@ -8,15 +8,11 @@ import CloseIcon from "@mui/icons-material/Close";
 export const CstmSnackbar = styled(Snackbar)((props) => ({
   fontWeight: 300,
   color: "#9a9896",
-  //   border: "0.4px solid #E0E3E7",
-  //   padding: "10px",
-  //   backgroundColor: "#405efb",
-
-  //   "&:hover": {
-  //     border: "0.4px solid #3c52b2",
-  //   },
 }));
-
+/**
+ * An atom component  
+ * @param {Boolean} showInfo - manage the state of the component by setting boolean value 
+ */
 export default function SimpleSnackbar({ showInfo = false }) {
   const [open, setOpen] = React.useState(false);
 
@@ -36,12 +32,8 @@ export default function SimpleSnackbar({ showInfo = false }) {
       sx={{
         display: "flex",
         justifyContent: "center",
-        // backgroundColor: "#405efb",
       }}
     >
-      {/* <Button color="primary" size="small" onClick={handleClose}>
-        Okay
-      </Button> */}
       <IconButton
         size="small"
         aria-label="close"
@@ -55,7 +47,6 @@ export default function SimpleSnackbar({ showInfo = false }) {
 
   return (
     <div>
-      {/* <Button onClick={handleClick}>Open simple snackbar</Button> */}
       <CstmSnackbar
         open={open}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}

@@ -4,15 +4,12 @@ import React, { useEffect, useState } from "react";
 
 import { Box, Container, Grid, Paper, CircularProgress } from "@mui/material";
 
-import SaveIcon from "@mui/icons-material/Save";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import HistoryIcon from "@mui/icons-material/History";
 import axios from "axios";
 
 import { Title, CustmButton, TextBox } from "./atoms/FormFields";
 import SimpleSnackbar from "./atoms/SnackBar";
 import LetterForm from "./LetterForm";
-import { endpoint } from '../utils/endpoint'
 
 const defaultValues = {
   description: "",
@@ -20,6 +17,9 @@ const defaultValues = {
   style: "",
 };
 
+/**
+ * An component for Letter Board 
+ */
 const LetterBoard = () => {
   const [formData, setformData] = useState(defaultValues);
   const [disabledState, setdisabledState] = useState(true);
@@ -27,6 +27,7 @@ const LetterBoard = () => {
   const [error, seterror] = useState("");
   const [result, setResult] = useState("");
 
+  // function to handle form submission
   const formHandler = async () => {
     if (
       formData?.description === "" ||
@@ -37,9 +38,7 @@ const LetterBoard = () => {
     }
     setIsLoading(true);
     try {
-      // for local
       const result = await axios.post(`/api`, formData, {
-      // const result = await axios.post("https://comfy-cuchufli-5d89fd.netlify.app/api", formData, {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -52,6 +51,7 @@ const LetterBoard = () => {
     setIsLoading(false);
   };
 
+  // hook for setting disabling state according to form data state or given reponses
   useEffect(() => {
     console.log("formdata is:", formData);
     if (
@@ -63,11 +63,10 @@ const LetterBoard = () => {
     }
   }, [formData]);
 
+  // function to copy given result in clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(result?.data);
   };
-
-  const handleSave = () => {};
 
   return (
     <React.Fragment>
@@ -138,16 +137,6 @@ const LetterBoard = () => {
                   marginTop: "1.2vh",
                 }}
               >
-                <CustmButton
-                  variant="contained"
-                  disableElevation
-                  btnlen={"20%"}
-                  startIcon={<SaveIcon />}
-                  disabled={disabledState}
-                  onClick={() => handleSave()}
-                >
-                  Save
-                </CustmButton>
                 <CustmButton
                   variant="contained"
                   disableElevation

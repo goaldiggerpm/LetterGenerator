@@ -1,31 +1,33 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback} from "react";
 
 import {
   Box,
-  Container,
   FormControl,
   Grid,
   Paper,
-  CircularProgress,
-  Snackbar,
 } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import axios from "axios";
 
 import {
   Label,
   Title,
   SubTitle,
   CustmButton,
-  TextBox,
 } from "./atoms/FormFields";
 import InputMultiline from "./atoms/CustmTextrarea";
 import DropButton from "./atoms/DropButton";
 
+/**
+ * An molecule component for LetterBoard 
+ * @param {Object} theFormData - form data object 
+ * @param {Function} setTheFormData - function to set form data
+ * @param {Function} action - to call actionable
+ * @param {Boolean} theDisabledState - state for disabling actions
+ */
 const LetterForm = ({ theFormData, setTheFormData, action, theDisabledState }) => {
+
+  // function to set the data on event changes from inputs
   const handleOnChange = useCallback((ev) => {
     if (ev.target.name === "description") {
       const handleChange = (event) => {

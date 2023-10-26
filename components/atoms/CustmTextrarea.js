@@ -2,6 +2,13 @@ import * as React from "react";
 import { Input as BaseInput } from "@mui/base/Input";
 import { styled } from "@mui/system";
 
+/**
+ * An atom component  
+ * @param {String} name - name of the input tag 
+ * @param {String} value - value for the input tag 
+ * @param {Function} onChange - passed function
+ * @param {String} maxLength - decide the length of the atom according to given string 
+ */
 const Input = React.forwardRef(function CustomInput(props, ref) {
   return (
     <BaseInput
