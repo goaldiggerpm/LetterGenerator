@@ -39,7 +39,7 @@ const LetterBoard = () => {
     try {
       // for local
       // const result = await axios.post(`/api`, formData, {
-      const result = await axios.post(`${endpoint}/api`, formData, {
+      const result = await axios.post("https://comfy-cuchufli-5d89fd.netlify.app/api", formData, {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
